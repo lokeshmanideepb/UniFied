@@ -26,15 +26,15 @@ const truncatedContent = (html:string, maxWords:number) => {
   if (!eventDate) {
     eventDate = new Date();
   }
-  let dateString = DateTimeUtils.toLongDateString(eventDate)
+  const dateString = DateTimeUtils.toLongDateString(eventDate)
   let tillDateString:string | null = null;
   if (event.till_date) {
-    let tillDate = DateTimeUtils.parseDate(event.till_date)
+    const tillDate = DateTimeUtils.parseDate(event.till_date)
     if (tillDate) {
       tillDateString = DateTimeUtils.toLongDateString(tillDate)
     }
   }
-  let text =  truncatedContent(event.description, 50)
+  const text =  truncatedContent(event.description, 50)
   const handleShowMore = () => {
     history('/view-details'); // Replace '/view-details' with the actual route to the details page
   };
