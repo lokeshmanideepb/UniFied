@@ -3,54 +3,46 @@ import React from "react";
 import { Event } from "../types/Event";
 import { Link } from "react-router-dom";
 import { DateTimeUtils } from "../utils/DateTimeUtils";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { RoomOutlined } from "@mui/icons-material";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import { addEventToCalendar } from "../services/calendarService";
 import { useAuth } from "../pages/AuthContext";
-interface EventCardProps
-{
+interface EventCardProps {
   event: Event;
 }
 
-const EventCard: React.FC<EventCardProps> = ( { event } ) =>
-{
+const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const history = useNavigate();
   const { account } = useAuth();
-  const truncatedContent = ( html: string, maxWords: number ) =>
-  {
+  const truncatedContent = (html: string, maxWords: number) => {
     // Use a regular expression to limit the HTML content to a certain number of words
-    const words = html.split( " " );
-    return words.length > maxWords ? words.slice( 0, maxWords ).join( " " ) + "..." : html;
+    const words = html.split(" ");
+    return words.length > maxWords
+      ? words.slice(0, maxWords).join(" ") + "..."
+      : html;
   };
 
-  const handleShowMore = () =>
-  {
-    history( `/event/${ event.route_url }` );
+  const handleShowMore = () => {
+    history(`/event/${event.route_url}`);
   };
-  const handleAddToCalendar = () =>
-  {
-    addEventToCalendar( event, account )
-  }
+  const handleAddToCalendar = () => {
+    addEventToCalendar(event, account);
+  };
 
-
-
-  let eventDate = DateTimeUtils.parseDate( event.event_date )
-  if ( !eventDate )
-  {
+  let eventDate = DateTimeUtils.parseDate(event.event_date);
+  if (!eventDate) {
     eventDate = new Date();
   }
-  const dateString = DateTimeUtils.toLongDateString( eventDate )
+  const dateString = DateTimeUtils.toLongDateString(eventDate);
   let tillDateString: string | null = null;
-  if ( event.till_date )
-  {
-    const tillDate = DateTimeUtils.parseDate( event.till_date )
-    if ( tillDate )
-    {
-      tillDateString = DateTimeUtils.toLongDateString( tillDate )
+  if (event.till_date) {
+    const tillDate = DateTimeUtils.parseDate(event.till_date);
+    if (tillDate) {
+      tillDateString = DateTimeUtils.toLongDateString(tillDate);
     }
   }
-  const text = truncatedContent( event.description, 50 )
+  const text = truncatedContent(event.description, 50);
 
   return (
     <div className="max-w-4xl mx-auto m-4 p-4 shadow-lg border rounded-lg bg-white flex">
@@ -65,14 +57,16 @@ const EventCard: React.FC<EventCardProps> = ( { event } ) =>
             <>
               <RoomOutlined /> {event.location}
             </>
-          ) : ""}
+          ) : (
+            ""
+          )}
         </p>
         <p className=" text-gray-700">
           {dateString}
-          {tillDateString ? `- ${ tillDateString }` : ""}
+          {tillDateString ? `- ${tillDateString}` : ""}
         </p>
         <strong>
-          {event.from_time} {event.to_time ? ` - ${ event.to_time }` : ""}
+          {event.from_time} {event.to_time ? ` - ${event.to_time}` : ""}
         </strong>
       </div>
       <div className="ml-4 flex-grow">
@@ -81,20 +75,28 @@ const EventCard: React.FC<EventCardProps> = ( { event } ) =>
         </h2>
         <div className="mt-4 p-4 items-center text-left">
           <span>
-            {parse( text )}
+            {parse(text)}
             <span
               className="text-blue-500 cursor-pointer"
-              style={{ whiteSpace: 'nowrap' }}
-              onClick={handleShowMore}>
+              style={{ whiteSpace: "nowrap" }}
+              onClick={handleShowMore}
+            >
               Show more
             </span>
           </span>
         </div>
         <div className="mt-4 items-center space-x-2">
-          <Link to={`/event/${ event.route_url }`} state={{ event }}>
-            <button className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2">View Details</button>
+          <Link to={`/event/${event.route_url}`} state={{ event }}>
+            <button className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2">
+              View Details
+            </button>
           </Link>
-          <button className="bg-green-500 text-white rounded-lg px-4 py-2" onClick={handleAddToCalendar}>Add to Calendar</button>
+          <button
+            className="bg-green-500 text-white rounded-lg px-4 py-2"
+            onClick={handleAddToCalendar}
+          >
+            Add to Calendar
+          </button>
         </div>
       </div>
     </div>

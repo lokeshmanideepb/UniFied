@@ -14,18 +14,18 @@ function getGraphClient(token: string) {
 
 // Function to add event to Outlook calendar
 export async function addEventToCalendar(eventDetails: Event, account: any) {
-  let eventDate = eventDetails.event_date.split("T")[0];
-  let eventStartTime =
+  const eventDate = eventDetails.event_date.split("T")[0];
+  const eventStartTime =
     eventDetails.from_time == "All Day"
       ? "08:00"
       : DateTimeUtils.convertTo24HourFormat(eventDetails.from_time);
 
-  let eventEndTime =
+  const eventEndTime =
     eventDetails.from_time == "All Day"
       ? "17:00"
       : eventDetails.to_time == null
-      ? DateTimeUtils.addOneHour(eventDetails.from_time)
-      : DateTimeUtils.convertTo24HourFormat(eventDetails.to_time);
+        ? DateTimeUtils.addOneHour(eventDetails.from_time)
+        : DateTimeUtils.convertTo24HourFormat(eventDetails.to_time);
   console.log(eventDate, eventStartTime, eventEndTime);
   const event = {
     subject: eventDetails.title,
@@ -61,13 +61,13 @@ export async function addEventToCalendar(eventDetails: Event, account: any) {
     // Add event to the user's calendar
     await graphClient.api("/me/events").post(event);
     alert("Event added to your Outlook calendar!");
-  } catch (error) {
+  } catch {
     {
       try {
-        let tokenResponse = await msalInstance.acquireTokenPopup({
+        const tokenResponse = await msalInstance.acquireTokenPopup({
           scopes: ["Calendars.ReadWrite"],
         });
-        let token = tokenResponse.accessToken;
+        const token = tokenResponse.accessToken;
 
         // Re-attempt adding the event to the calendar with the new token
         const graphClient = getGraphClient(token);
@@ -75,7 +75,7 @@ export async function addEventToCalendar(eventDetails: Event, account: any) {
       } catch (popupError) {
         console.error(
           "Error adding event to calendar after popup:",
-          popupError
+          popupError,
         );
         alert("Failed to add event to calendar. Please try again.");
       }

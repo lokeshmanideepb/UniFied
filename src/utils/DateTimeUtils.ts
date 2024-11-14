@@ -69,10 +69,10 @@ export class DateTimeUtils {
   static convertTo24HourFormat(time: string): string {
     // Split time into parts
     const [timePart, modifier] = time.split(" ");
-
+    const array = timePart.split(":").map(Number);
     // Split the timePart (e.g., "10:00") into hours and minutes
-    let [hours, minutes] = timePart.split(":").map(Number);
-
+    let hours = array[0];
+    const minutes = array[1];
     // Convert based on "am" or "pm"
     if (modifier.toLowerCase() === "pm" && hours !== 12) {
       hours += 12;
@@ -92,7 +92,10 @@ export class DateTimeUtils {
     const [timePart, modifier] = time.split(" ");
 
     // Split the timePart (e.g., "10:00") into hours and minutes
-    let [hours, minutes] = timePart.split(":").map(Number);
+    const array = timePart.split(":").map(Number);
+    // Split the timePart (e.g., "10:00") into hours and minutes
+    let hours = array[0];
+    const minutes = array[1];
 
     // Convert hours to 24-hour format based on am/pm
     if (modifier.toLowerCase() === "pm" && hours !== 12) {

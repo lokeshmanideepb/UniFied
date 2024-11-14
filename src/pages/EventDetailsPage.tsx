@@ -1,17 +1,12 @@
 // src/pages/EventsPage.tsx
 import React from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
-type EventDetailsPageProps = {
-  // Define any additional props if needed
-};
-const EventDetailsPage: React.FC<EventDetailsPageProps> = () =>
-{
+const EventDetailsPage: React.FC = () => {
   const location = useLocation();
   const event = location.state?.event;
 
-  if ( !event )
-  {
+  if (!event) {
     return <p>Event not found or data missing.</p>;
   }
 
