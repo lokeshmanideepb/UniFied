@@ -32,9 +32,9 @@ const EventsPage: React.FC = () =>
   if ( loading ) return <p>Loading events...</p>;
 
   return (
-    <div className="p-4">
+    <div className="p-12">
       {events.map( ( event ) => (
-        <EventCard key={event.title} event={event} />
+        <EventCard key={event.route_url} event={event} />
       ) )}
     </div>
   );
