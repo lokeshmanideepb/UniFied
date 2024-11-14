@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import "./App.css";
+//import "./App.css";
 import EventsPage from "./pages/EventsPage";
 
 import { BrowserRouter as Router } from "react-router-dom";
