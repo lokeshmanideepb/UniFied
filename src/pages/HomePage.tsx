@@ -7,7 +7,7 @@ import "../styles/HomePage.css"
 
 const HomePage: React.FC = () => {
 
-  const feat1:Event = createEvent("Annual Music Festival", "April 15, 2023", "Central Park, NY");
+  // const feat1:Event = createEvent("Annual Music Festival", "April 15, 2023", "Central Park, NY");
 
   const event1:Event = createEvent("Tech Conference 2024", "January 25, 2025", "");
   const event2:Event = createEvent("Yoga and Wellness", "February 15, 2025", "");

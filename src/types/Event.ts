@@ -21,6 +21,6 @@ export function createEvent(title: string, event_date: string, location: string)
     from_time: "",
     to_time: "",
     location,
-    tags: ""
+    tags: []
   }
 }

@@ -26,35 +26,36 @@ const Navbar: React.FC = () => {
     navigate("/");
   };
 
-  return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-logo">
-        <img
-          src={logo}
-          alt="Logo"
-          className="w-10 h-10 mr-2 inline-block"
-        />
-        UIC Event
-      </Link>
-      <div className="navbar-links">
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-        {isAuthenticated ? (
-          <Link
-            onClick={handleLogout.bind(this)}
-          >
-            Logout
-          </Link>
-        ) : (
-          <Link
-            onClick={handleLogin.bind(this)}
-          >
-            Login
-          </Link>
-        )}
-      </div>
-    </nav>
-  );
+  if(!loading)
+    return (
+      <nav className="navbar">
+        <Link to="/" className="navbar-logo">
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-10 h-10 mr-2 inline-block"
+          />
+          UIC Event
+        </Link>
+        <div className="navbar-links">
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+          {isAuthenticated ? (
+            <Link to="/"
+              onClick={handleLogout.bind(this)}
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link to="/"
+              onClick={handleLogin.bind(this)}
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      </nav>
+    );
 };
 
 export default Navbar;
