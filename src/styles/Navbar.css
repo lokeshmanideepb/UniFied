@@ -1,6 +1,9 @@
 /* Navbar.css */
 
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: #333;
     width: 100%;
     padding: 1rem;
