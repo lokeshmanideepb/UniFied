@@ -4,12 +4,14 @@ import { questionsConfig } from "../../config/questionConfig";
 import { useAuth } from "../AuthContext";
 import type { OnboardingResponses } from "../../types/User";
 import { postUserData } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 const OnboardingFlow: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string | string[] }>(
     {},
   );
   const { user, setUser } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     // This useEffect will run whenever 'answers' is updated
     if (Object.keys(answers).length === questionsConfig.length) {
@@ -39,6 +41,9 @@ const OnboardingFlow: React.FC = () => {
       const userData = await postUserData(updatedUser);
       if (userData) {
         setUser(userData);
+        setTimeout(() => {
+          navigate("/events");
+        }, 100);
       }
     }
   };
