@@ -1,0 +1,14 @@
+/* EventCard.css */
+
+.home {
+    margin: 0 3rem 0 3rem;
+}
+
+.feature-title {
+    color:cornflowerblue;
+}
+
+.eventcards {
+    display: flex;
+    justify-content: center;
+}

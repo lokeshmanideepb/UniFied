@@ -4,6 +4,8 @@ import logo from "../assets/logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
+/* to be removed */
+
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const { isAuthenticated, login, logout } = useAuth();

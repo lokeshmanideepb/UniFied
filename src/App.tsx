@@ -12,7 +12,6 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />

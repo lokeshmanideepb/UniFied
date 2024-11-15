@@ -10,3 +10,17 @@ export interface Event {
   location: string;
   tags: string[]; // Array of tags
 }
+
+export function createEvent(title: string, event_date: string, location: string): Event {
+  return {
+    title,
+    route_url: "",
+    description: "",
+    event_date,
+    till_date: "",
+    from_time: "",
+    to_time: "",
+    location,
+    tags: ""
+  }
+}

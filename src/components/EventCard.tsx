@@ -8,6 +8,8 @@ import { RoomOutlined } from "@mui/icons-material";
 import parse from "html-react-parser";
 import { addEventToCalendar } from "../services/calendarService";
 import { useAuth } from "../pages/AuthContext";
+import "../styles/EventCard.css"
+
 interface EventCardProps {
   event: Event;
 }
@@ -45,61 +47,70 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const text = truncatedContent(event.description, 50);
 
   return (
-    <div className="max-w-4xl mx-auto m-4 p-4 shadow-lg border rounded-lg bg-white flex">
-      <div className="mt-4 flex-shrink-0 w-1/3 relative">
-        <img
-          className="w-full h-40 object-cover rounded-lg"
-          src="https://via.placeholder.com/150"
-          alt="Event Image"
-        />
-        <p className="mt-8 text-gray-700 items-center">
-          {event.location ? (
-            <>
-              <RoomOutlined /> {event.location}
-            </>
-          ) : (
-            ""
-          )}
-        </p>
-        <p className=" text-gray-700">
-          {dateString}
-          {tillDateString ? `- ${tillDateString}` : ""}
-        </p>
-        <strong>
-          {event.from_time} {event.to_time ? ` - ${event.to_time}` : ""}
-        </strong>
-      </div>
-      <div className="ml-4 flex-grow">
-        <h2 className="mt-4 text-3xl font-semibold text-gray-800">
-          {event.title}
-        </h2>
-        <div className="mt-4 p-4 items-center text-left">
-          <span>
-            {parse(text)}
-            <span
-              className="text-blue-500 cursor-pointer"
-              style={{ whiteSpace: "nowrap" }}
-              onClick={handleShowMore}
-            >
-              Show more
-            </span>
-          </span>
-        </div>
-        <div className="mt-4 items-center space-x-2">
-          <Link to={`/event/${event.route_url}`} state={{ event }}>
-            <button className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2">
-              View Details
-            </button>
-          </Link>
-          <button
-            className="bg-green-500 text-white rounded-lg px-4 py-2"
-            onClick={handleAddToCalendar}
-          >
-            Add to Calendar
-          </button>
-        </div>
+    <div className="event-card">
+      {event.image && <img src={event.image} alt={event.title} className="event-card-image" />}
+      <div className="event-card-content">
+        <h3 className="event-card-title">{event.title}</h3>
+        <p className="event-card-date">{event.event_date}</p>
+        <p className="event-card-location">{event.location}</p>
       </div>
     </div>
+
+    // <div className="max-w-4xl mx-auto m-4 p-4 shadow-lg border rounded-lg bg-white flex">
+    //   <div className="mt-4 flex-shrink-0 w-1/3 relative">
+    //     <img
+    //       className="w-full h-40 object-cover rounded-lg"
+    //       src="https://via.placeholder.com/150"
+    //       alt="Event Image"
+    //     />
+    //     <p className="mt-8 text-gray-700 items-center">
+    //       {event.location ? (
+    //         <>
+    //           <RoomOutlined /> {event.location}
+    //         </>
+    //       ) : (
+    //         ""
+    //       )}
+    //     </p>
+    //     <p className=" text-gray-700">
+    //       {dateString}
+    //       {tillDateString ? `- ${tillDateString}` : ""}
+    //     </p>
+    //     <strong>
+    //       {event.from_time} {event.to_time ? ` - ${event.to_time}` : ""}
+    //     </strong>
+    //   </div>
+    //   <div className="ml-4 flex-grow">
+    //     <h2 className="mt-4 text-3xl font-semibold text-gray-800">
+    //       {event.title}
+    //     </h2>
+    //     <div className="mt-4 p-4 items-center text-left">
+    //       <span>
+    //         {parse(text)}
+    //         <span
+    //           className="text-blue-500 cursor-pointer"
+    //           style={{ whiteSpace: "nowrap" }}
+    //           onClick={handleShowMore}
+    //         >
+    //           Show more
+    //         </span>
+    //       </span>
+    //     </div>
+    //     <div className="mt-4 items-center space-x-2">
+    //       <Link to={`/event/${event.route_url}`} state={{ event }}>
+    //         <button className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2">
+    //           View Details
+    //         </button>
+    //       </Link>
+    //       <button
+    //         className="bg-green-500 text-white rounded-lg px-4 py-2"
+    //         onClick={handleAddToCalendar}
+    //       >
+    //         Add to Calendar
+    //       </button>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
