@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import { fetchEvents } from "../services/api";
 import { Event } from "../types/Event";
 import EventCard from "../components/EventCard";
-
 const EventsPage: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const getEvents = async () => {
       try {

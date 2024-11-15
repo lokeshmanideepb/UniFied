@@ -6,7 +6,7 @@ import { useAuth } from "./AuthContext";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (isAuthenticated !== undefined) {
@@ -15,8 +15,7 @@ const Header: React.FC = () => {
     }
   }, [isAuthenticated]);
   const handleLogin = async () => {
-    login();
-    navigate("/events");
+    navigate("/login");
   };
   const handleLogout = () => {
     logout();

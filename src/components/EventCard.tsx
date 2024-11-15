@@ -1,7 +1,6 @@
 // src/components/EventCard.tsx
 import React from "react";
 import { Event } from "../types/Event";
-import { Link } from "react-router-dom";
 import { DateTimeUtils } from "../utils/DateTimeUtils";
 import { useNavigate } from "react-router-dom";
 import { RoomOutlined } from "@mui/icons-material";
@@ -86,11 +85,12 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
           </span>
         </div>
         <div className="mt-4 items-center space-x-2">
-          <Link to={`/event/${event.route_url}`} state={{ event }}>
-            <button className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2">
-              View Details
-            </button>
-          </Link>
+          <button
+            className="border border-blue-500 text-blue-500 rounded-lg px-4 py-2"
+            onClick={handleShowMore}
+          >
+            View Details
+          </button>
           <button
             className="bg-green-500 text-white rounded-lg px-4 py-2"
             onClick={handleAddToCalendar}
