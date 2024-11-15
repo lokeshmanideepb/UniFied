@@ -1,13 +1,13 @@
 // src/components/EventCard.tsx
 import React from "react";
 import { Event } from "../types/Event";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { DateTimeUtils } from "../utils/DateTimeUtils";
-import { useNavigate } from "react-router-dom";
-import { RoomOutlined } from "@mui/icons-material";
-import parse from "html-react-parser";
-import { addEventToCalendar } from "../services/calendarService";
-import { useAuth } from "../pages/AuthContext";
+// import { useNavigate } from "react-router-dom";
+// import { RoomOutlined } from "@mui/icons-material";
+// import parse from "html-react-parser";
+// import { addEventToCalendar } from "../services/calendarService";
+// import { useAuth } from "../pages/AuthContext";
 import "../styles/EventCard.css"
 
 interface EventCardProps {
@@ -15,40 +15,40 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event }) => {
-  const history = useNavigate();
-  const { account } = useAuth();
-  const truncatedContent = (html: string, maxWords: number) => {
-    // Use a regular expression to limit the HTML content to a certain number of words
-    const words = html.split(" ");
-    return words.length > maxWords
-      ? words.slice(0, maxWords).join(" ") + "..."
-      : html;
-  };
+  // const history = useNavigate();
+  // const { account } = useAuth();
+  // const truncatedContent = (html: string, maxWords: number) => {
+  //   // Use a regular expression to limit the HTML content to a certain number of words
+  //   const words = html.split(" ");
+  //   return words.length > maxWords
+  //     ? words.slice(0, maxWords).join(" ") + "..."
+  //     : html;
+  // };
 
-  const handleShowMore = () => {
-    history(`/event/${event.route_url}`);
-  };
-  const handleAddToCalendar = () => {
-    addEventToCalendar(event, account);
-  };
+  // const handleShowMore = () => {
+  //   history(`/event/${event.route_url}`);
+  // };
+  // const handleAddToCalendar = () => {
+  //   addEventToCalendar(event, account);
+  // };
 
   let eventDate = DateTimeUtils.parseDate(event.event_date);
   if (!eventDate) {
     eventDate = new Date();
   }
-  const dateString = DateTimeUtils.toLongDateString(eventDate);
-  let tillDateString: string | null = null;
-  if (event.till_date) {
-    const tillDate = DateTimeUtils.parseDate(event.till_date);
-    if (tillDate) {
-      tillDateString = DateTimeUtils.toLongDateString(tillDate);
-    }
-  }
-  const text = truncatedContent(event.description, 50);
+  // const dateString = DateTimeUtils.toLongDateString(eventDate);
+  // let tillDateString: string | null = null;
+  // if (event.till_date) {
+  //   const tillDate = DateTimeUtils.parseDate(event.till_date);
+  //   if (tillDate) {
+  //     tillDateString = DateTimeUtils.toLongDateString(tillDate);
+  //   }
+  // }
+  // const text = truncatedContent(event.description, 50);
 
   return (
     <div className="event-card">
-      {event.image && <img src={event.image} alt={event.title} className="event-card-image" />}
+      {/* {event.image && <img src={event.image} alt={event.title} className="event-card-image" />} */}
       <div className="event-card-content">
         <h3 className="event-card-title">{event.title}</h3>
         <p className="event-card-date">{event.event_date}</p>

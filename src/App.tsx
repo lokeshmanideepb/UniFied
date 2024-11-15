@@ -4,7 +4,7 @@ import EventsPage from "./pages/EventsPage";
 import LoginPage from "./pages/LoginPage";
 import { BrowserRouter as Router } from "react-router-dom";
 import EventDetailsPage from "./pages/EventDetailsPage";
-import Header from "./pages/Header";
+// import Header from "./pages/Header";
 import HomePage from "./pages/HomePage";
 import PrivateRoute from "./pages/PrivateRoute";
 import { AuthProvider } from "./pages/AuthContext";
