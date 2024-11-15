@@ -8,7 +8,9 @@ import Header from "./pages/Header";
 import HomePage from "./pages/HomePage";
 import PrivateRoute from "./pages/PrivateRoute";
 import { AuthProvider } from "./pages/AuthContext";
-function App() {
+import OnboardingFlow from "./pages/Intro/OnboardingFlow";
+function App ()
+{
   return (
     <AuthProvider>
       <Router>
@@ -16,6 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/onboarding"
+            element={<PrivateRoute element={<OnboardingFlow />} />}
+          />
           <Route
             path="/events"
             element={<PrivateRoute element={<EventsPage />} />}
