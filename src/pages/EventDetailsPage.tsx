@@ -5,8 +5,10 @@ import { Event } from "../types/Event";
 import { fetchEvent } from "../services/api";
 import { useParams, useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
+import { useAuth } from "../pages/AuthContext";
 const EventDetailsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { account } = useAuth();
   const { eventId } = useParams<{ eventId: string }>();
   const [event, setEvent] = useState<Event | null>(null);
   useEffect(() => {
@@ -20,6 +22,9 @@ const EventDetailsPage: React.FC = () => {
     getEvent();
   }, [event, eventId, navigate]);
 
+  const handleAddToCalendar = () => {
+    addEventToCalendar(event, account);
+  };
   if (!event) {
     return <div>Loading...</div>;
   }
@@ -53,7 +58,10 @@ const EventDetailsPage: React.FC = () => {
           {event.from_time} {event.to_time ? ` - ${event.to_time}` : ""}
         </p>
       </div>
-      <button className="bg-green-500 text-white rounded-lg px-4 py-2 mt-6">
+      <button
+        className="bg-green-500 text-white rounded-lg px-4 py-2 mt-6"
+        onClick={handleAddToCalendar}
+      >
         Add to Calendar
       </button>
       {/* Location */}
