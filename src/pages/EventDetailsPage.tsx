@@ -6,6 +6,7 @@ import { fetchEvent } from "../services/api";
 import { useParams, useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
 import { useAuth } from "../pages/AuthContext";
+import { addEventToCalendar } from "../services/calendarService";
 const EventDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const { account } = useAuth();
