@@ -24,7 +24,7 @@ const EventDetailsPage: React.FC = () => {
   }, [event, eventId, navigate]);
 
   const handleAddToCalendar = () => {
-    addEventToCalendar(event, account);
+    if (event) addEventToCalendar(event, account);
   };
   if (!event) {
     return <div>Loading...</div>;
