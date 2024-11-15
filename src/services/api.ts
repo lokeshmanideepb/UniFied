@@ -17,7 +17,7 @@ export const fetchEvent = async (route_url: string): Promise<Event> => {
 };
 
 export const getAccessToken = async (
-  authorizationCode: string
+  authorizationCode: string,
 ): Promise<any> => {
   const fetchURL = API_URL + "/auth/verify_token";
   const response = await axios.post<JSON>(fetchURL, {

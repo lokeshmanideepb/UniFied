@@ -9,8 +9,7 @@ import HomePage from "./pages/HomePage";
 import PrivateRoute from "./pages/PrivateRoute";
 import { AuthProvider } from "./pages/AuthContext";
 import OnboardingFlow from "./pages/Intro/OnboardingFlow";
-function App ()
-{
+function App() {
   return (
     <AuthProvider>
       <Router>
