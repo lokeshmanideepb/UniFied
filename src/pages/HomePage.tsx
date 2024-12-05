@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = () =>
+{
   return (
-    <div className="bg-gray-50 font-sans leading-normal tracking-normal">
+    <div className="bg-gray-50 font-sans leading-normal tracking-normal mt-12">
       {/* Header */}
 
       {/* Hero Section */}

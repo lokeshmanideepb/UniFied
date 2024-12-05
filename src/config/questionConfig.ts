@@ -38,4 +38,40 @@ export const questionsConfig = [
     ],
   },
   // Add more questions as needed
+  {
+    id: 4,
+    questionText: "Are you an international student?",
+    inputType: "radio",
+    options: ["Yes", "No"],
+  },
+  {
+    id: 5,
+    questionText: "What is your academic level?",
+    inputType: "radio",
+    options: ["Undergraduate", "Graduate", "PhD"],
+  },
+  {
+    id: 6,
+    questionText: "What is your major?",
+    inputType: "radio",
+    options: [
+      "Computer Science",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering",
+      "Biological Sciences",
+      "Business Administration",
+      "Psychology",
+      "Architecture",
+      "Fine Arts",
+      "Health Sciences",
+      "Other",
+    ],
+  },
+  {
+    id: 7,
+    questionText: "What are your hobbies or interests?",
+    inputType: "checkbox",
+    options: ["Art", "Music", "Technology", "Literature", "Gaming", "Fitness"],
+  },
 ];

@@ -1,54 +1,74 @@
 // src/components/EventCard.tsx
-import React from "react";
-import { Event } from "../types/Event";
-import { DateTimeUtils } from "../utils/DateTimeUtils";
-import { useNavigate } from "react-router-dom";
 import { RoomOutlined } from "@mui/icons-material";
 import parse from "html-react-parser";
-import { addEventToCalendar } from "../services/calendarService";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/AuthContext";
-interface EventCardProps {
+import { addEventToCalendar } from "../services/calendarService";
+import { Event } from "../types/Event";
+import { DateTimeUtils } from "../utils/DateTimeUtils";
+interface EventCardProps
+{
   event: Event;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event }) => {
+const EventCard: React.FC<EventCardProps> = ( { event } ) =>
+{
   const history = useNavigate();
   const { account } = useAuth();
-  const truncatedContent = (html: string, maxWords: number) => {
+  const truncatedContent = ( html: string, maxWords: number ) =>
+  {
     // Use a regular expression to limit the HTML content to a certain number of words
-    const words = html.split(" ");
+    const words = html.split( " " );
     return words.length > maxWords
-      ? words.slice(0, maxWords).join(" ") + "..."
+      ? words.slice( 0, maxWords ).join( " " ) + "..."
       : html;
   };
 
-  const handleShowMore = () => {
-    history(`/event/${event.route_url}`);
+  function removeImgTags ( html: string ): string
+  {
+    const div = document.createElement( "div" );
+    div.innerHTML = html;
+
+    // Remove all <img> tags
+    const imgTags = div.querySelectorAll( "img" );
+    imgTags.forEach( ( img ) => img.remove() );
+
+    return div.innerHTML;
+  }
+
+  const handleShowMore = () =>
+  {
+    history( `/event/${ event.route_url }` );
   };
-  const handleAddToCalendar = () => {
-    addEventToCalendar(event, account);
+  const handleAddToCalendar = () =>
+  {
+    addEventToCalendar( event, account );
   };
 
-  let eventDate = DateTimeUtils.parseDate(event.event_date);
-  if (!eventDate) {
+  let eventDate = DateTimeUtils.parseDate( event.event_date );
+  if ( !eventDate )
+  {
     eventDate = new Date();
   }
-  const dateString = DateTimeUtils.toLongDateString(eventDate);
+  const dateString = DateTimeUtils.toLongDateString( eventDate );
   let tillDateString: string | null = null;
-  if (event.till_date) {
-    const tillDate = DateTimeUtils.parseDate(event.till_date);
-    if (tillDate) {
-      tillDateString = DateTimeUtils.toLongDateString(tillDate);
+  if ( event.till_date )
+  {
+    const tillDate = DateTimeUtils.parseDate( event.till_date );
+    if ( tillDate )
+    {
+      tillDateString = DateTimeUtils.toLongDateString( tillDate );
     }
   }
-  const text = truncatedContent(event.description, 50);
+  const text = truncatedContent( removeImgTags( event.description ), 50 );
 
   return (
     <div className="max-w-4xl mx-auto m-4 p-4 shadow-lg border rounded-lg bg-white flex">
       <div className="mt-4 flex-shrink-0 w-1/3 relative">
         <img
           className="w-full h-40 object-cover rounded-lg"
-          src="https://via.placeholder.com/150"
+          src={event.image_url ? event.image_url : "https://placehold.co/400"}
           alt="Event Image"
         />
         <p className="mt-8 text-gray-700 items-center">
@@ -62,10 +82,10 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </p>
         <p className=" text-gray-700">
           {dateString}
-          {tillDateString ? `- ${tillDateString}` : ""}
+          {tillDateString ? `- ${ tillDateString }` : ""}
         </p>
         <strong>
-          {event.from_time} {event.to_time ? ` - ${event.to_time}` : ""}
+          {event.from_time} {event.to_time ? ` - ${ event.to_time }` : ""}
         </strong>
       </div>
       <div className="ml-4 flex-grow">
@@ -74,7 +94,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </h2>
         <div className="mt-4 p-4 items-center text-left">
           <span>
-            {parse(text)}
+            {parse( text )}
             <span
               className="text-blue-500 cursor-pointer"
               style={{ whiteSpace: "nowrap" }}
