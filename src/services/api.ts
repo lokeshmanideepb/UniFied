@@ -1,12 +1,32 @@
 // src/services/api.ts
 import axios from "axios";
-import { Event } from "../types/Event";
 import { API_URL } from "../config";
+import { Event } from "../types/Event";
 import type { User } from "../types/User";
 
 export const fetchEvents = async (): Promise<Event[]> => {
   const fetchURL = API_URL + "/events";
-  const response = await axios.get<Event[]>(fetchURL);
+  const accessToken = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.get<Event[]>(fetchURL, config);
+  return response.data;
+};
+
+export const fetchUserSpecificEvents = async (): Promise<Event[]> => {
+  const fetchURL = API_URL + "/v2/events";
+  const accessToken = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.get<Event[]>(fetchURL, config);
   return response.data;
 };
 
@@ -17,7 +37,7 @@ export const fetchEvent = async (route_url: string): Promise<Event> => {
 };
 
 export const getAccessToken = async (
-  authorizationCode: string,
+  authorizationCode: string
 ): Promise<any> => {
   const fetchURL = API_URL + "/auth/verify_token";
   const response = await axios.post<JSON>(fetchURL, {
@@ -27,11 +47,16 @@ export const getAccessToken = async (
   return response.data;
 };
 
-export const getUserData = async (emailAddress: string): Promise<User> => {
+export const getUserData = async (): Promise<User> => {
   const fetchURL = `${API_URL}/user`;
-  const response = await axios.get(fetchURL, {
-    params: { email: emailAddress },
-  });
+  const accessToken = localStorage.getItem("accessToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.get(fetchURL, config);
   return response.data;
 };
 

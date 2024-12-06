@@ -12,6 +12,13 @@ export const questionsConfig = [
       "Social Gatherings",
       "Career Fairs",
     ],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1565689157206-0fddef7589a2",
+      "https://images.unsplash.com/photo-1593013820725-ca0b6076576f",
+      "https://images.unsplash.com/photo-1675784061072-b6a9fd155192",
+      "https://plus.unsplash.com/premium_photo-1711987622842-28b4caf88651",
+      "https://images.unsplash.com/photo-1416453072034-c8dbfa2856b5",
+    ],
   },
   {
     id: 2,
@@ -25,6 +32,11 @@ export const questionsConfig = [
       "Clubs",
       "Student Government",
     ],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+      "https://plus.unsplash.com/premium_photo-1661906789703-a25a1e53180e",
+      "https://images.unsplash.com/photo-1594216428334-d2228ed94b50",
+    ],
   },
   {
     id: 3,
@@ -36,6 +48,70 @@ export const questionsConfig = [
       "College of Architecture, Design, and the Arts",
       "College of Business Administration",
     ],
+    imageUrls: [
+      "https://today.uic.edu/wp-content/uploads/2019/07/2019.EIB004-590x393.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYU1cghlKT1mvnZjp8rzP4g5hx_AtY2_-DFQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbBHLgx5SUCIsKfuXnGx9l5tyUdJit6IKlbFVFgjn0rUm-ORf8xKkiQDdZb1SrMuBhdE8&usqp=CAU",
+      "https://cada.uic.edu/wp-content/uploads/2024/07/Screenshot-2024-10-02-at-1.02.11-PM.png",
+    ],
   },
   // Add more questions as needed
+  {
+    id: 4,
+    questionText: "Are you an international student?",
+    inputType: "radio",
+    options: ["Yes", "No"],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1501514799070-290ae1c889fe",
+      "https://www.stu.edu/Portals/students/Images/newly-admitted-_students-group_INTL-PAGES.jpg",
+    ],
+  },
+  {
+    id: 5,
+    questionText: "What is your academic level?",
+    inputType: "radio",
+    options: ["Undergraduate", "Graduate", "PhD"],
+    imageUrls: [
+      "https://www.dictionary.com/e/wp-content/uploads/2021/05/20210512_undergraduate_1000x562.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAgdSi83NeFlG3xCJ5YpcKevcyEyEHQ-OjesElO9wvpy7NQeZNBohc5puRi1vtPAN__Ds&usqp=CAU",
+    ],
+  },
+  {
+    id: 6,
+    questionText: "What is your major?",
+    inputType: "radio",
+    options: [
+      "Computer Science",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering",
+      "Biological Sciences",
+      "Business Administration",
+      "Psychology",
+      "Architecture",
+      "Fine Arts",
+      "Health Sciences",
+      "Other",
+    ],
+    imageUrls: [
+      "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051",
+      "https://plus.unsplash.com/premium_photo-1664910842853-0d643f6db30c",
+      "https://images.unsplash.com/photo-1511174511562-5f7f18b874f8",
+      "https://images.unsplash.com/photo-1531956656798-56686eeef3d4",
+      "https://images.unsplash.com/photo-1527576539890-dfa815648363",
+    ],
+  },
+  {
+    id: 7,
+    questionText: "What are your hobbies or interests?",
+    inputType: "checkbox",
+    options: ["Art", "Music", "Technology", "Literature", "Gaming", "Fitness"],
+    imageUrls: [
+      "https://images.unsplash.com/photo-1579541814924-49fef17c5be5",
+      "https://images.unsplash.com/photo-1471478331149-c72f17e33c73",
+      "https://www.readerviews.com/wp-content/uploads/2022/01/Literature.png",
+      "https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42",
+      "https://media.timeout.com/images/105960769/750/562/image.jpg",
+    ],
+  },
 ];

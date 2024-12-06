@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.calendar-container a {
+  color: black !important; /* Override existing styles */
+  text-decoration: none; /* Optional: Remove underline */
+}
+
+.calendar-container a:hover {
+  color: black !important; /* Keep the hover color black */
+}
