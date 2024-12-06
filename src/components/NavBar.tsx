@@ -22,6 +22,7 @@ const NavBar: React.FC<NavBarProps> = ( { isAuthenticated } ) =>
                             <Link to="/calendar" className="hover:text-white">Calendar</Link>
                         </>
                     )}
+                    <Link to="/documentation" className="hover:text-white">Documentation</Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}

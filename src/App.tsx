@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
+import AppFlowDocumentation from "./pages/AppFlowDocumentation";
 import { AuthProvider } from "./pages/AuthContext";
 import EventDetailsPage from "./pages/EventDetailsPage";
 import EventsCalendar from "./pages/EventsCalendar";
@@ -19,6 +20,7 @@ function App ()
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/documentation" element={<AppFlowDocumentation />} />"
           <Route
             path="/onboarding"
             element={<PrivateRoute element={<OnboardingFlow />} />}

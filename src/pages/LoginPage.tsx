@@ -20,6 +20,7 @@ const LoginPage: React.FC = () =>
       if ( userData )
       {
         setUser( userData );
+        localStorage.setItem( "user", JSON.stringify( userData ) )
         // Step 2: If the user exists, check if preferences are set
         console.log( userData )
         if ( userData.preferences )
