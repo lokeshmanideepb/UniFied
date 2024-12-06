@@ -47,7 +47,7 @@ export const getAccessToken = async (
   return response.data;
 };
 
-export const getUserData = async (emailAddress: string): Promise<User> => {
+export const getUserData = async (): Promise<User> => {
   const fetchURL = `${API_URL}/user`;
   const accessToken = localStorage.getItem("accessToken");
   const config = {

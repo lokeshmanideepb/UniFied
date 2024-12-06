@@ -16,7 +16,7 @@ const LoginPage: React.FC = () =>
     if ( account?.username )
     {
       // Step 1: Check if the user exists in the database using the email
-      let userData = await getUserData( account.username );
+      let userData = await getUserData();
       if ( userData )
       {
         setUser( userData );
@@ -56,7 +56,7 @@ const LoginPage: React.FC = () =>
     {
       storeUser();
     }
-  }, [ account ] ); // This runs whenever the account state changes
+  }, [ account, storeUser ] ); // This runs whenever the account state changes
 
   // Handle login
   const handleLogin = async () =>
@@ -85,7 +85,7 @@ const LoginPage: React.FC = () =>
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">
-          Welcome to University Events
+          Welcome to UIC Events
         </h1>
         <p>Please log in</p>
         <button
@@ -95,7 +95,7 @@ const LoginPage: React.FC = () =>
           Login with Microsoft
         </button>
         <p className="mt-4 text-gray-600 text-sm text-center">
-          By signing up, you agree to receive emails related to your preferences.
+          By signing up, you subscribe to receive emails related to your preferences.
         </p>
       </div>
     </div>

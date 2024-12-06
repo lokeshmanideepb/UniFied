@@ -2,8 +2,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import React, { useEffect, useRef, useState } from 'react';
-import { categoriesConfig, labels } from '../config/TagsConfig';
+import React, { useEffect, useState } from 'react';
+import { categoriesConfig } from '../config/TagsConfig';
 import { fetchEvents } from "../services/api";
 import { DateTimeUtils } from '../utils/DateTimeUtils';
 type CalendarEvent = {
@@ -18,44 +18,14 @@ type CalendarEvent = {
     };
 };
 
-const candidateLabels = labels
-const generateRandomColor = (): string =>
-{
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for ( let i = 0; i < 6; i++ )
-    {
-        color += letters[ Math.floor( Math.random() * 16 ) ];
-    }
-    return color;
-};
-const assignColors = ( labels: string[] ): { [ key: string ]: string } =>
-{
-    const colorMap: { [ key: string ]: string } = {};
-    labels.forEach( label =>
-    {
-        colorMap[ label ] = generateRandomColor();
-    } );
-    return colorMap;
-};
-const labelColors = assignColors( candidateLabels )
-
 const EventsCalendar: React.FC = () =>
 {
-    const calendarRef = useRef<any>( null );
     const [ calendarEvents, setCalendarEvents ] = useState<CalendarEvent[]>( [] );
     const [ filteredEvents, setFilteredEvents ] = useState<CalendarEvent[]>( [] );
     const [ selectedLabels, setSelectedLabels ] = useState<string[]>( [] );
 
     const [ loading, setLoading ] = useState( true );
-    const handleDateClick = ( info: any ) =>
-    {
-        alert( `You clicked on ${ info.dateStr }` );
-    };
-    const handleEventClick = ( info: any ) =>
-    {
-        alert( `You clicked on event: ${ info.event.title }` );
-    };
+
     const mapEventToCalendarEvent = ( event: any ): CalendarEvent =>
     {
         try
@@ -77,7 +47,7 @@ const EventsCalendar: React.FC = () =>
         }
         catch ( error )
         {
-            console.log( event );
+            console.log( error );
         }
         return event;
     };

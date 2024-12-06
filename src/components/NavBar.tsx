@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface NavBarProps
 {
     isAuthenticated: boolean;
-    onLogout: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ( { isAuthenticated, onLogout } ) =>
+const NavBar: React.FC<NavBarProps> = ( { isAuthenticated } ) =>
 {
-    const [ isMenuOpen, setIsMenuOpen ] = useState( false );
-
-    const toggleMenu = () =>
-    {
-        setIsMenuOpen( !isMenuOpen );
-    };
 
     return (
         <nav className="text-white py-4 px-6">

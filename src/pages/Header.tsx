@@ -39,7 +39,7 @@ const Header: React.FC = () =>
             University Events
           </Link>
 
-          <NavBar isAuthenticated={isAuthenticated && ( user?.preferences != null )} onLogout={handleLogout} />
+          <NavBar isAuthenticated={isAuthenticated && ( user?.preferences != null )} />
           {/* Navigation and Buttons */}
           <div className="flex space-x-4 ml-auto">
             {/* If the user is logged in, show Logout button */}
