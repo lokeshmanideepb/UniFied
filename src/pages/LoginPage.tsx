@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserData, postUserData } from "../services/api"; // Your API calls
 import type { User } from "../types/User";
@@ -9,77 +9,93 @@ const LoginPage: React.FC = () =>
   const { isAuthenticated, account, login, setUser } = useAuth();
   const navigate = useNavigate();
   const [ loading, setLoading ] = useState( true );
-
-  // Function to check the user and perform necessary actions
-  const storeUser = async () =>
+  const [ userLoading, setUserLoading ] = useState( false );
+  // Function to handle user logic
+  const storeUser = useCallback( async () =>
   {
+    setUserLoading( true );
     if ( account?.username )
     {
-      // Step 1: Check if the user exists in the database using the email
-      let userData = await getUserData();
-      if ( userData )
+      try
       {
-        setUser( userData );
-        localStorage.setItem( "user", JSON.stringify( userData ) )
-        // Step 2: If the user exists, check if preferences are set
-        console.log( userData )
-        if ( userData.preferences )
+        // Step 1: Check if the user exists
+        let userData = await getUserData();
+        if ( userData )
         {
-          // If preferences exist, navigate to /events
-          navigate( "/events" );
+          setUser( userData );
+          localStorage.setItem( "user", JSON.stringify( userData ) );
+
+          // Navigate based on preferences
+          if ( userData.preferences )
+          {
+            navigate( "/events" );
+          } else
+          {
+            navigate( "/onboarding" );
+          }
         } else
         {
-          // If preferences are not set, navigate to /onboarding
+          // Step 2: Create new user if not found
+          const newUser: User = {
+            email: account.username,
+            username: account.username,
+            fullName: account.name || "User", // Default to "User" if fullName is missing
+            preferences: null, // Placeholder for preferences
+          };
+
+          userData = await postUserData( newUser );
+          setUser( userData );
+
+          // Navigate to onboarding after user creation
           navigate( "/onboarding" );
         }
-      } else
+      } catch ( error )
       {
-        // Step 3: If the user does not exist, create a new user
-        const newUser: User = {
-          email: account.username,
-          username: account.username,
-          fullName: account.name,
-          preferences: null, // Placeholder for user preferences
-        };
-
-        userData = await postUserData( newUser );
-        setUser( userData );
-        // After user creation, redirect to onboarding page
-        navigate( "/onboarding" );
+        console.error( "Error storing user:", error );
+      }
+      finally
+      {
+        setUserLoading( false );
       }
     }
-  };
+    setLoading( false );
+  }, [ account, navigate, setUser ] );
 
-  // Effect to trigger storeUser after account is updated
+  // Effect to trigger storeUser after account updates
   useEffect( () =>
   {
     if ( account?.username )
     {
       storeUser();
     }
-  }, [ account, storeUser ] ); // This runs whenever the account state changes
+  }, [ account, storeUser ] );
+
+  // Effect to handle authentication state
+  useEffect( () =>
+  {
+    if ( isAuthenticated !== undefined )
+    {
+      setLoading( false ); // Stop loading once isAuthenticated is determined
+    }
+  }, [ isAuthenticated ] );
 
   // Handle login
   const handleLogin = async () =>
   {
-    setLoading( true ); // Set loading to true while login is happening
-    login(); // Trigger OAuth login (this will update the account state)
+    setLoading( true ); // Start loading while login is in progress
+    login(); // Trigger OAuth login
   };
-  useEffect( () =>
-  {
-    if ( isAuthenticated === undefined ) return; // Avoid unnecessary updates when isAuthenticated is undefined
 
-    // If already authenticated, go to events page
-    if ( isAuthenticated )
-    {
-      navigate( "/events" );
-    }
-    setLoading( false ); // Make sure to set loading to false when effect is done
-  }, [ isAuthenticated, navigate ] ); // Dependency array ensures useEffect runs only when isAuthenticated or navigate changes
-
-  if ( loading )
+  if ( loading || userLoading )
   {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
