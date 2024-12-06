@@ -6,7 +6,7 @@ import { useAuth } from "./AuthContext";
 const Header: React.FC = () =>
 {
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const [ loading, setLoading ] = useState( true );
   useEffect( () =>
   {
@@ -39,7 +39,7 @@ const Header: React.FC = () =>
             University Events
           </Link>
 
-          <NavBar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+          <NavBar isAuthenticated={isAuthenticated && ( user?.preferences != null )} onLogout={handleLogout} />
           {/* Navigation and Buttons */}
           <div className="flex space-x-4 ml-auto">
             {/* If the user is logged in, show Logout button */}

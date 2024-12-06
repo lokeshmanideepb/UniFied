@@ -1,7 +1,7 @@
 // src/pages/EventsPage.tsx
 import React, { useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
-import { fetchEvents } from "../services/api";
+import { fetchUserSpecificEvents } from "../services/api";
 import { Event } from "../types/Event";
 const EventsPage: React.FC = () =>
 {
@@ -16,7 +16,7 @@ const EventsPage: React.FC = () =>
     {
       try
       {
-        const data = await fetchEvents();
+        const data = await fetchUserSpecificEvents();
         setEvents( data );
       } catch ( error )
       {
