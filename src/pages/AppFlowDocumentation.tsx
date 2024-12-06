@@ -107,6 +107,32 @@ const AppFlowDocumentation: React.FC = () =>
                     <p>Start your journey today and never miss an exciting event again!</p>
                 </div>
             </section>
+            <section className="mb-12">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">Repositories</h2>
+                <p className="text-lg text-gray-600 mb-4">
+                    Explore the codebases powering the UIC Events platform:
+                </p>
+                <ul className="space-y-4">
+                    <li>
+                        <a
+                            href="https://github.com/lokeshmanideepb/UniFied"
+                            className="text-blue-500 font-semibold hover:underline hover:text-blue-700"
+                        >
+                            UIC Events Web App
+                        </a>
+                        <span className="text-gray-700"> - The frontend codebase for the UIC Events Web App.</span>
+                    </li>
+                    <li>
+                        <a
+                            href="https://github.com/lokeshmanideepb/cs484-proj-backend"
+                            className="text-blue-500 font-semibold hover:underline hover:text-blue-700"
+                        >
+                            UIC Events Backend
+                        </a>
+                        <span className="text-gray-700"> - The backend codebase managing APIs and data.</span>
+                    </li>
+                </ul>
+            </section>
         </div>
     );
 };
