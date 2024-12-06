@@ -44,18 +44,24 @@ const Header: React.FC = () =>
           <div className="flex space-x-4 ml-auto">
             {/* If the user is logged in, show Logout button */}
             {/* Replace the condition with actual login status logic */}
-
+            {isAuthenticated ? (
+              <div className="mr-4 py-2">
+                <span className="text-lg font-bold">{user!.fullName}</span>
+                <br />
+                <span className="text-sm font-extralight">{user!.email}</span>
+              </div>
+            ) : null}
             {isAuthenticated ? (
               <button
                 onClick={handleLogout.bind( this )}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                className="bg-red-500 text-white px-4 py-2 mt-2 h-12 align-middle rounded hover:bg-red-600"
               >
                 Logout
               </button>
             ) : (
               <button
                 onClick={handleLogin.bind( this )}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white px-4 py-2 mt-2 h-12 align-middle rounded hover:bg-blue-600"
               >
                 Login
               </button>

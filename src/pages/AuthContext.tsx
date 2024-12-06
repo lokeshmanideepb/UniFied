@@ -53,6 +53,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ( { children } ) =>
       {
         setAccount( accounts[ 0 ] );
         setIsAuthenticated( true );
+        setUser( JSON.parse( localStorage.getItem( "user" ) || "{}" ) );
       }
     }
     setLoading( false );
@@ -72,8 +73,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ( { children } ) =>
       setIsAuthenticated( true );
       localStorage.setItem( "accessToken", loginResponse.accessToken )
       localStorage.setItem( "isAuthenticated", "true" );
-      localStorage.setItem( "user", JSON.stringify( loginResponse.account ) );
-
     } catch ( error )
     {
       console.error( "Login error:", error );
