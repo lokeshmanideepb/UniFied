@@ -36,7 +36,7 @@ const Header: React.FC = () =>
               alt="Logo"
               className="w-10 h-10 mr-2 inline-block"
             />
-            University Events
+            UIC Events
           </Link>
 
           <NavBar isAuthenticated={isAuthenticated && ( user?.preferences != null )} />
