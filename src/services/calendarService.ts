@@ -1,8 +1,8 @@
 // src/services/calendarService.ts
-import msalInstance from "./msalInstance";
 import { Client } from "@microsoft/microsoft-graph-client";
 import { Event } from "../types/Event";
 import { DateTimeUtils } from "../utils/DateTimeUtils";
+import msalInstance from "./msalInstance";
 // Initialize Microsoft Graph client
 function getGraphClient(token: string) {
   return Client.init({
@@ -24,9 +24,8 @@ export async function addEventToCalendar(eventDetails: Event, account: any) {
     eventDetails.from_time == "All Day"
       ? "17:00"
       : eventDetails.to_time == null
-        ? DateTimeUtils.addOneHour(eventDetails.from_time)
-        : DateTimeUtils.convertTo24HourFormat(eventDetails.to_time);
-  console.log(eventDate, eventStartTime, eventEndTime);
+      ? DateTimeUtils.addOneHour(eventDetails.from_time)
+      : DateTimeUtils.convertTo24HourFormat(eventDetails.to_time);
   const event = {
     subject: eventDetails.title,
     body: {
@@ -75,7 +74,7 @@ export async function addEventToCalendar(eventDetails: Event, account: any) {
       } catch (popupError) {
         console.error(
           "Error adding event to calendar after popup:",
-          popupError,
+          popupError
         );
         alert("Failed to add event to calendar. Please try again.");
       }

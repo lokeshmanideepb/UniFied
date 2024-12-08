@@ -47,10 +47,6 @@ const AppFlowDocumentation: React.FC = () =>
                     Once onboarding is complete, you’ll be directed to the main Events Page. Here, you'll see a list of upcoming events that match your interests.
                     Each event card provides key details such as the event title, date, time, and a brief description. You can click on any event to see more information.
                 </p>
-                <div className="bg-indigo-100 text-indigo-800 p-4 rounded-lg mt-4">
-                    <p className="font-semibold">Quick Access:</p>
-                    <p>To filter events easily, use the search and tags options available on the Events Page!</p>
-                </div>
             </section>
 
             <section className="mb-12">
