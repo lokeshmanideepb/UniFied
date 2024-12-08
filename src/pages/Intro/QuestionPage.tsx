@@ -62,8 +62,6 @@ const QuestionPage: React.FC<QuestionPageProps> = ( {
 
   const handleCheckboxChange = ( option: string ) =>
   {
-    console.log( inputType )
-    console.log( Array.isArray( selectedAnswer ) )
     if ( Array.isArray( selectedAnswer ) )
     {
 

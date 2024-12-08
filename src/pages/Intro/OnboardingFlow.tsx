@@ -15,7 +15,6 @@ const OnboardingFlow: React.FC = () =>
   const navigate = useNavigate();
   useEffect( () =>
   {
-    console.log( answers )
     // This useEffect will run whenever 'answers' is updated
     if ( Object.keys( answers ).length === questionsConfig.length )
     {
@@ -45,12 +44,9 @@ const OnboardingFlow: React.FC = () =>
       major: answers[ 6 ] as string,
       hobbies: answers[ 7 ] as string[],
     };
-    console.log( "Preferences:", preferences );
-    console.log( user )
     if ( user )
     {
       const updatedUser = { ...user, preferences };
-      console.log( updatedUser );
       const userData = await postUserData( updatedUser );
       if ( userData )
       {

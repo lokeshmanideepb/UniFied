@@ -68,7 +68,6 @@ const EventsCalendar: React.FC = () =>
                 const data = await fetchEvents();
                 setCalendarEvents( data.map( mapEventToCalendarEvent ) )
                 setFilteredEvents( data.map( mapEventToCalendarEvent ) )
-                console.log( calendarEvents )
             } catch ( error )
             {
                 console.error( "Failed to fetch events:", error );
