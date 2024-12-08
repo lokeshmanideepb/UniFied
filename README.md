@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Why My App is More Than Just a Simple CRUD App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. **Add to Calendar Feature with Microsoft Integration**
 
-Currently, two official plugins are available:
+The app allows users to add events directly to their **Microsoft Calendar** without needing to view or manage their calendar in the app. With secure OAuth integration, users can:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Quickly add interesting events** to their Microsoft Calendar with a single click.
+- Receive reminders and updates about these events through their calendar.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 2. **Scraper Schedulers**
 
-- Configure the top-level `parserOptions` property like this:
+The app doesn’t rely on outdated, manually entered event data. Instead:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- Automated **scrapers** fetch the latest events from multiple sources like university event websites.
+- These scrapers run on a **daily schedule** to keep the app's event list updated in real-time.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+This feature ensures the app is always fresh with new, relevant events—no stale or irrelevant information.
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+## 3. **Event Image Extraction Using Unsplash API**
+
+Events are more engaging when they’re visually appealing. The app uses:
+
+- **Unsplash API** to fetch high-quality images for events.
+- By analyzing the event title using **natural language processing (NLP)**, the app identifies key terms to search for the most relevant image.
+
+For example, an event titled “AI and Robotics” would automatically get a dynamic image of robots or futuristic tech, making it look professional and engaging.
+
+This adds an extra layer of polish and appeal to the event listings.
+
+---
+
+## 4. **Personalized Event Recommendations Using NLP**
+
+Everyone has different interests, and the app makes it easy for users to find what matters most to them. Here’s how it works:
+
+- Users set preferences, like topics or themes they’re interested in (e.g., "Workshops," "Sports").
+- The app uses **natural language processing (NLP)** to analyze event descriptions and tags.
+- Events with matching keywords and a **relevance score above 30** are highlighted as recommendations.
