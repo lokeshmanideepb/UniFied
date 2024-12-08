@@ -40,3 +40,53 @@ Everyone has different interests, and the app makes it easy for users to find wh
 - Users set preferences, like topics or themes they’re interested in (e.g., "Workshops," "Sports").
 - The app uses **natural language processing (NLP)** to analyze event descriptions and tags.
 - Events with matching keywords and a **relevance score above 30** are highlighted as recommendations.
+
+Sample event with keyword and relevance
+
+```json
+{
+  "nlp_tags": [
+    {
+      "label": "Undergraduate",
+      "score": 97.8
+    },
+    {
+      "label": "Civil Engineering",
+      "score": 38.77
+    },
+    {
+      "label": "Engineering",
+      "score": 37.8
+    },
+    {
+      "label": "Literature",
+      "score": 37.75
+    },
+    {
+      "label": "Technology",
+      "score": 37.59
+    },
+    {
+      "label": "Graduate",
+      "score": 36.98
+    },
+    ----
+    {
+      "label": "Career Fairs",
+      "score": 2.36
+    },
+    {
+      "label": "Clubs",
+      "score": 1.54
+    },
+    {
+      "label": "Workshops",
+      "score": 1.16
+    },
+    {
+      "label": "Cultural Events",
+      "score": 0.85
+    }
+  ]
+}
+```
