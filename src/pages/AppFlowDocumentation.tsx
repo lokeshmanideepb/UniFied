@@ -82,7 +82,7 @@ const AppFlowDocumentation: React.FC = () =>
             <section className="mb-12">
                 <h2 className="text-3xl font-semibold text-gray-800 mb-4">6. Add to Calendar</h2>
                 <p className="text-lg text-gray-600">
-                    Each event page has an "Add to Calendar" button that lets you add events directly to your personal calendar (e.g., Google Calendar, Outlook).
+                    Each event page has an "Add to Calendar" button that lets you add events directly to your Outlook calendar.
                     Simply click the button, and the event will be saved to your calendar with all relevant details such as the time, location, and description.
                     This feature ensures that you’ll be reminded about upcoming events, helping you stay organized.
                 </p>
