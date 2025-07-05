@@ -31,7 +31,7 @@ function App ()
           />
           <Route
             path="/event/:eventId"
-            element={<PrivateRoute element={<EventDetailsPage />} />}
+            element={<EventDetailsPage />}
           />
           <Route
             path="/calendar"

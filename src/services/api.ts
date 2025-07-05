@@ -18,7 +18,7 @@ export const fetchEvents = async (): Promise<Event[]> => {
 };
 
 export const fetchUserSpecificEvents = async (): Promise<Event[]> => {
-  const fetchURL = API_URL + "/v2/events";
+  const fetchURL = API_URL + "/events";
   const accessToken = localStorage.getItem("accessToken");
   const config = {
     headers: {

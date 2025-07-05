@@ -1,8 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import ChatWidget from "../components/ChatWidget";
 const HomePage: React.FC = () =>
 {
+  function addDays ( date: Date, days: number ): Date
+  {
+    const result = new Date( date );
+    result.setDate( result.getDate() + days );
+    return result;
+  }
+  const today = new Date();
+  const futureDate1 = addDays( today, 10 );
+  const futureDate2 = addDays( today, 20 );
+  const futureDate3 = addDays( today, 30 );
   return (
     <div className="bg-gray-50 font-sans leading-normal tracking-normal mt-12">
       {/* Header */}
@@ -71,7 +81,12 @@ const HomePage: React.FC = () =>
                 leaders and innovators.
               </p>
               <p className="text-sm text-gray-500 mt-4">
-                Date: January 25, 2025
+                Date: {
+                  futureDate1.toLocaleDateString( undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  } )}
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -83,7 +98,12 @@ const HomePage: React.FC = () =>
                 techniques.
               </p>
               <p className="text-sm text-gray-500 mt-4">
-                Date: February 15, 2025
+                Date: {
+                  futureDate2.toLocaleDateString( undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  } )}
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -94,7 +114,13 @@ const HomePage: React.FC = () =>
                 Explore an art exhibition showcasing works from university
                 students and local artists.
               </p>
-              <p className="text-sm text-gray-500 mt-4">Date: March 3, 2025</p>
+              <p className="text-sm text-gray-500 mt-4">Date: {
+                futureDate3.toLocaleDateString( undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                } )
+              }</p>
             </div>
           </div>
           <Link
@@ -105,7 +131,7 @@ const HomePage: React.FC = () =>
           </Link>
         </div>
       </section>
-
+      <ChatWidget />
       {/* Footer */}
     </div>
   );
